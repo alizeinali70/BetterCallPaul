@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "Population";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form method="post" enctype="multipart/form-data" asp-action="Calc_Population_Csv">
+    <div class="form-group pb-4 pa-4">
+        <label for="csvFile">Select CSV File:</label>
+        <input type="file" name="csvFile" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary ">Upload and Show</button>
+</form>
+
+<div class="data-container">
+    <h1>the name of the country with the highest number of people per square kilometre: </h1>
+    @if (ViewData["highestnumberofpopulation"] == null)
+    {
+       <p>Please upload your File to see the Result.</p>
+    }
+    else
+    {
+        <p>@*The day with the smallest temperature spread is: @Model*@</p>
+        <p>the name of the country with the highest number of people per square kilometre:<h2>@ViewData["highestnumberofpopulation"]</h2> </p>
+    }
+</div>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<style>
+    .data-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .data-row {
+        display: flex;
+    }
+
+    .data-cell {
+        padding: 8px;
+        border: 1px solid #ccc;
+        margin-right: 5px;
+    }
+</style>
+

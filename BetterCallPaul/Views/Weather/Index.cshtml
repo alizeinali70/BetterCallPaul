@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Weather";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form method="post" enctype="multipart/form-data" asp-action="Calc_min_Spread_Day_Csv">
+    <div class="form-group pb-4 pa-4">
+        <label for="csvFile">Select CSV File:</label>
+        <input type="file" name="csvFile" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary ">Upload and Show</button>
+</form>
+
+<form method="post" enctype="multipart/form-data" asp-action="Calc_min_Spread_Day_Json">
+    <div class="form-group pb-4 pa-4">
+        <label for="jsonFile">Select JSON File:</label>
+        <input type="file" name="jsonFile" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary ">Upload and Show</button>
+</form>
+
+<div class="data-container">
+    <h1>Day with Smallest Temperature Spread</h1>
+    @if (ViewData["DayWithSmallestSpread"] == null)
+    {
+        <p>Please upload your File to see the Result.</p>
+    }
+    else
+    {
+        <p>@*The day with the smallest temperature spread is: @Model*@</p>
+        <p>The day with the smallest temperature spread is: <h2>@ViewData["DayWithSmallestSpread"]</h2></p>
+    }
+</div>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<style>
+    .data-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .data-row {
+        display: flex;
+    }
+
+    .data-cell {
+        padding: 8px;
+        border: 1px solid #ccc;
+        margin-right: 5px;
+    }
+</style>
+
