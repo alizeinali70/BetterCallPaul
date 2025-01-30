@@ -32,7 +32,7 @@ namespace BetterCallPaulTest
             mockFile.Setup(f => f.OpenReadStream()).Returns(stream);
             mockFile.Setup(f => f.Length).Returns(stream.Length);
 
-            var controller = new WeatherController(); // Replace with your actual controller
+            var controller = new WeatherController(); 
 
             // Act
             var result = controller.Calc_min_Spread_Day_Csv(mockFile.Object) as ViewResult;
