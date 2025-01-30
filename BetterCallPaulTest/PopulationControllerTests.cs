@@ -32,7 +32,7 @@ namespace BetterCallPaulTest
             mockFile.Setup(f => f.OpenReadStream()).Returns(stream);
             mockFile.Setup(f => f.Length).Returns(stream.Length);
 
-            var controller = new PopulationController(); // Replace with your actual controller
+            var controller = new PopulationController(); 
 
             // Act
             var result = controller.Calc_Population_Csv(mockFile.Object) as ViewResult;
