@@ -12,10 +12,10 @@ on:
 jobs:
   build:
 
-    runs-on: ${{matrix.os}}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+    runs-on: ubuntu-latest
+   # strategy:
+    #  matrix:
+     #   os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
     - uses: actions/checkout@v4
@@ -29,3 +29,16 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Build and Push Docker Image
+      uses: docker/build-push-action@v6
+      with:
+        image: alizeinali/my-docker-repo
+        registery: docker.io
+        username: ${{secrets.Docker_Username}}
+        password: ${{secrets.Docker_Password}}
+        
+      
+      
+       
+        
+    
